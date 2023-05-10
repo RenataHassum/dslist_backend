@@ -1,7 +1,9 @@
 package com.devsuperior.dslist.dtos;
 
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import jakarta.persistence.Column;
+import org.springframework.beans.BeanUtils;
 
 public class GameMinDto {
     private Long id;
@@ -28,23 +30,47 @@ public class GameMinDto {
         shortDescription = entity.getShortDescription();
     }
 
+    public GameMinDto(GameMinProjection projection) {
+        BeanUtils.copyProperties(projection, this);
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Integer getYear() {
         return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public String getImgUrl() {
         return imgUrl;
     }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public String getShortDescription() {
         return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }
