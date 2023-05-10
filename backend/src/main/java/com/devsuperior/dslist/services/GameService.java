@@ -5,11 +5,13 @@ import com.devsuperior.dslist.dtos.GameMinDto;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
+import com.devsuperior.dslist.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameService {
@@ -25,7 +27,8 @@ public class GameService {
 
     @Transactional(readOnly = true)
     public GameDto findById(Long id) {
-        Game game = repository.findById(id).get();
+        Optional<Game> objOptional = repository.findById(id);
+        Game game = objOptional.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado, id: " + id + " não existe, informe um id válido"));
         return new GameDto(game);
     }
 
