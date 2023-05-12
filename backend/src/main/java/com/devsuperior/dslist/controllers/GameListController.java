@@ -35,8 +35,8 @@ public class GameListController {
     }
 
     @PostMapping(value = "/{listId}/replacement") // chama o gameService pq o path é lists e não games, por isso usou esse controller.
-    public ResponseEntity<Void> replacementMove(@PathVariable Long listId, @RequestBody ReplacementDto bodyDto) {
-        gameListService.replacementMove(listId, bodyDto.getSourceIndex(), bodyDto.getDestinationIndex() );
+    public ResponseEntity<Void> replacementGameCard(@PathVariable Long listId, @RequestBody ReplacementDto bodyDto) {
+        gameListService.replacementGameCard(listId, bodyDto.getSourceIndex(), bodyDto.getDestinationIndex() );
         return ResponseEntity.noContent().build();
     }
 

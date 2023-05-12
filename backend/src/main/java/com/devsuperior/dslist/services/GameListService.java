@@ -28,7 +28,7 @@ public class GameListService {
 
     @Transactional
     //criou esse método no List por ser a lista de jogos e não no GameService
-    public void replacementMove(Long listId, int sourceIndex, int destinationIndex) {
+    public void replacementGameCard(Long listId, int sourceIndex, int destinationIndex) {
         List<GameMinProjection> list = gameRepository.searchByList(listId);
         GameMinProjection obj = list.remove(sourceIndex); // removeu o elemento da list nesse momento
         list.add(destinationIndex, obj); // atualizou a posição nova
