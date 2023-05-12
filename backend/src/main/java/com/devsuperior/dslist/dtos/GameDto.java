@@ -14,6 +14,7 @@ public class GameDto {
     private String imgUrl;
     private String shortDescription;
     private String longDescription;
+    private Integer position;
 
     public GameDto() {
     }
@@ -21,6 +22,7 @@ public class GameDto {
     public GameDto(Game entity) {
         BeanUtils.copyProperties(entity, this); // copia dados da entidade para o dto (tem que ser o mesmo nome)
     }
+
     //Para essa função BeanUtils.copyProperties funcionar tem que ter GET/SET no dto, antes só GET
     public Long getId() {
         return id;
@@ -93,4 +95,14 @@ public class GameDto {
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
     }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
 }
+
+
