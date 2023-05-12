@@ -28,16 +28,18 @@ public class GameListController {
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{listId}/games") // chama o gameService pq o path é lists e não games, por isso usou esse controller.
+    @GetMapping(value = "/{listId}/games")
+    // chama o gameService pq o path é lists e não games, por isso usou esse controller.
     public ResponseEntity<List<GameMinDto>> findGamesByList(@PathVariable Long listId) {
         List<GameMinDto> list = gameService.findGamesByList(listId);
         return ResponseEntity.ok().body(list);
     }
 
-    @PostMapping(value = "/{listId}/replacement") // chama o gameService pq o path é lists e não games, por isso usou esse controller.
+    @PostMapping(value = "/{listId}/replacement")
+    // chama o gameService pq o path é lists e não games, por isso usou esse controller.
     public ResponseEntity<Void> replacementGameCard(@PathVariable Long listId, @RequestBody ReplacementDto bodyDto) {
-        gameListService.replacementGameCard(listId, bodyDto.getSourceIndex(), bodyDto.getDestinationIndex() );
-        return ResponseEntity.noContent().build();
+        gameListService.replacementGameCard(listId, bodyDto.getSourceIndex(), bodyDto.getDestinationIndex());
+        return ResponseEntity.ok().build();
     }
 
 }

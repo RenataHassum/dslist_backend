@@ -26,13 +26,18 @@ public class GameListService {
         return list.stream().map(gameList -> new GameListDto(gameList)).toList();
     }
 
+    //criou esse método no List por ser a lista tb_belonging de jogos e não no GameService
     @Transactional
-    //criou esse método no List por ser a lista de jogos e não no GameService
     public void replacementGameCard(Long listId, int sourceIndex, int destinationIndex) {
+
         List<GameMinProjection> list = gameRepository.searchByList(listId);
+
         GameMinProjection obj = list.remove(sourceIndex); // removeu o elemento da list nesse momento
+
         list.add(destinationIndex, obj); // atualizou a posição nova
+
         //inseriu no GameListRepository uma consulta UPDATE
+
         int min = sourceIndex < destinationIndex ? sourceIndex : destinationIndex;
         int max = sourceIndex < destinationIndex ? destinationIndex : sourceIndex;
         for (int i = min; i <= max; i++) {
