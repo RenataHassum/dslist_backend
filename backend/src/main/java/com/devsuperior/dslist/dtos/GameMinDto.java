@@ -11,15 +11,18 @@ public class GameMinDto {
     private Integer year;
     private String imgUrl;
     private String shortDescription;
+    private Integer position;
 
-    public GameMinDto(){}
+    public GameMinDto() {
+    }
 
-    public GameMinDto(Long id, String title, Integer year, String imgUrl, String shortDescription) {
+    public GameMinDto(Long id, String title, Integer year, String imgUrl, String shortDescription, Integer position) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
+        this.position = position;
     }
 
     public GameMinDto(Game entity) {
@@ -28,10 +31,16 @@ public class GameMinDto {
         year = entity.getYear();
         imgUrl = entity.getImgUrl();
         shortDescription = entity.getShortDescription();
+        position = entity.getPosition();
     }
 
     public GameMinDto(GameMinProjection projection) {
-        BeanUtils.copyProperties(projection, this);
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getGameYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
+        position = projection.getPosition();
     }
 
     public Long getId() {
@@ -72,5 +81,13 @@ public class GameMinDto {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }
